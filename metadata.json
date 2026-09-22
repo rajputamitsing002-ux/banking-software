@@ -1,0 +1,6 @@
+{
+  "name": "OOP Banking System",
+  "description": "An object-oriented banking system featuring account creation, deposits, withdrawals with daily limit enforcement, balance checks, account information display, and date-range passbook printing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
