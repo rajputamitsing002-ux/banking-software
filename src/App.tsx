@@ -12,6 +12,7 @@ import { AccountDetailCard } from './components/AccountDetailCard';
 import { BankingOperations } from './components/BankingOperations';
 import { PassbookView } from './components/PassbookView';
 import { CreateAccountModal } from './components/CreateAccountModal';
+import { JavaCodeViewerModal } from './components/JavaCodeViewerModal';
 import { OperationResult } from './models/types';
 import { Transaction } from './models/Transaction';
 import {
@@ -62,6 +63,7 @@ export default function App() {
 
   // Modal state
   const [isCreateAccountOpen, setIsCreateAccountOpen] = useState(false);
+  const [isJavaCodeOpen, setIsJavaCodeOpen] = useState(false);
 
   // Notification toast
   const [toast, setToast] = useState<{
@@ -139,6 +141,7 @@ export default function App() {
         currentDate={currentDateStr}
         onDateChange={setCurrentDateStr}
         onOpenCreateAccount={() => setIsCreateAccountOpen(true)}
+        onOpenJavaCode={() => setIsJavaCodeOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -267,10 +270,19 @@ export default function App() {
 
       {/* Footer */}
       <footer className="border-t border-slate-200 bg-white py-4 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
-          <p>
-            State Bank of India &bull; Core Banking System &bull; All Rights Reserved
-          </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+          <div className="flex items-center gap-2">
+            <p>
+              State Bank of India &bull; Core Banking System
+            </p>
+            <span className="text-slate-300">|</span>
+            <button
+              onClick={() => setIsJavaCodeOpen(true)}
+              className="text-blue-700 hover:text-blue-900 font-semibold underline underline-offset-2"
+            >
+              View Java OOP Source Code
+            </button>
+          </div>
           <p className="text-slate-400 text-[11px]">
             Connaught Place Branch &bull; New Delhi &bull; IFSC: SBIN0001048
           </p>
@@ -283,6 +295,12 @@ export default function App() {
         onClose={() => setIsCreateAccountOpen(false)}
         bank={bank}
         onAccountCreated={handleAccountCreated}
+      />
+
+      {/* Java OOP Code Viewer Modal */}
+      <JavaCodeViewerModal
+        isOpen={isJavaCodeOpen}
+        onClose={() => setIsJavaCodeOpen(false)}
       />
     </div>
   );

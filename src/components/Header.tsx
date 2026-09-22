@@ -10,12 +10,14 @@ interface HeaderProps {
   currentDate: string; // YYYY-MM-DD
   onDateChange: (newDate: string) => void;
   onOpenCreateAccount: () => void;
+  onOpenJavaCode?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   currentDate,
   onDateChange,
   onOpenCreateAccount,
+  onOpenJavaCode,
 }) => {
   return (
     <header className="border-b border-slate-200 bg-white sticky top-0 z-40">
@@ -35,8 +37,8 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Controls: Date Simulator & New Account Button */}
-        <div className="flex items-center gap-2.5 sm:gap-3">
+        {/* Controls: Date Simulator & Action Buttons */}
+        <div className="flex items-center flex-wrap gap-2 sm:gap-3">
           {/* Simulated Banking Date */}
           <div className="flex items-center gap-2 bg-slate-50 hover:bg-slate-100 transition-colors px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs text-slate-700">
             <Calendar className="w-3.5 h-3.5 text-blue-700" />
@@ -49,6 +51,19 @@ export const Header: React.FC<HeaderProps> = ({
               title="Set simulated date to test daily withdrawal limits across different days"
             />
           </div>
+
+          {/* Java OOP Code View Action */}
+          {onOpenJavaCode && (
+            <button
+              id="btn-view-java-code"
+              onClick={onOpenJavaCode}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 transition-colors"
+              title="View Java OOP Source Code"
+            >
+              <span className="w-2 h-2 rounded-full bg-orange-500" />
+              <span>Java OOP Code</span>
+            </button>
+          )}
 
           {/* Open Account Action */}
           <button
